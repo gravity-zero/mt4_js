@@ -22,7 +22,7 @@ function getTitlesLetter(event)
 		Array.prototype.forEach.call(all_results, (title) => {
 			numbers += countLetter(title.textContent);
 		});
-		showResult(numbers);
+		showResult(numbers, numbers / all_results.length);
 	} 
 }
 
@@ -34,12 +34,19 @@ function getTitleLetter(event)
 	showResult(nb_letters);
 }
 
-function showResult(value)
+function showResult(value, moyenne=false)
 {
 	const result_box = document.getElementById("showNumberOfLetter");
 	result_box.innerHTML = "";
 	result_box.style = "border: 2px solid black";
-	result_box.appendChild(document.createTextNode(`Le nombre de lettre "e" est de: ${value}`));
+	result_box.appendChild(document.createTextNode(`Le nombre de lettre "e" est de: ${value} `));
+	if(moyenne)
+	{
+		const br = document.createElement("br");
+		result_box.appendChild(br);
+		result_box.appendChild(document.createTextNode(`La moyenne de "e" est de ${moyenne}`));
+	}
+		
 }
 
 function countLetter(string, letter="e")
